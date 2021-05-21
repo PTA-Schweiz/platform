@@ -17,6 +17,8 @@ import { Comparator, PathSelector, Selector } from './selectors';
  * into your Angular application as a service.
  */
 export abstract class NgRedux<RootState> implements ObservableStore<RootState> {
+  abstract [Symbol.observable](): import("redux").Observable<RootState>;
+
   /** @hidden, @deprecated */
   static instance?: ObservableStore<any> = undefined;
 

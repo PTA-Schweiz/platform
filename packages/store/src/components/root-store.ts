@@ -5,6 +5,7 @@ import {
   createStore,
   Dispatch,
   Middleware,
+  Observable as ReduxObservable,
   Reducer,
   Store,
   StoreCreator,
@@ -29,6 +30,10 @@ import { SubStore } from './sub-store';
 
 /** @hidden */
 export class RootStore<RootState> extends NgRedux<RootState> {
+  [Symbol.observable](): ReduxObservable<RootState> {
+    throw new Error('Method not implemented.');
+  }
+
   private store: Store<RootState> | undefined = undefined;
   private store$: BehaviorSubject<RootState>;
 

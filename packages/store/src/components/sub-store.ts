@@ -1,4 +1,4 @@
-import { AnyAction, Dispatch, Reducer } from 'redux';
+import { AnyAction, Dispatch, Observable as ReduxObservable, Reducer } from 'redux';
 import { Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 
@@ -24,6 +24,10 @@ export class SubStore<State> implements ObservableStore<State> {
     localReducer: Reducer<State, AnyAction>,
   ) {
     registerFractalReducer(basePath, localReducer);
+  }
+  
+  [Symbol.observable](): ReduxObservable<State> {
+    throw new Error('Method not implemented.');
   }
 
   dispatch: Dispatch<AnyAction> = action =>
